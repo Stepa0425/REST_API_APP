@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS clients;
+
+CREATE TABLE IF NOT EXISTS clients
+(
+    id BIGSERIAL PRIMARY KEY,
+    first_name  VARCHAR(200) NOT NULL,
+    last_name  VARCHAR(200) NOT NULL,
+    email VARCHAR(254) NOT NULL,
+    phone VARCHAR(20)  NOT NULL
+);
+
+DROP TABLE IF EXISTS sold_cars;
+
+CREATE TABLE sold_cars (
+    id BIGSERIAL PRIMARY KEY,
+    brand VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    client_id BIGINT NOT NULL,
+    FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE
+);
