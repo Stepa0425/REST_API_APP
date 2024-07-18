@@ -1,6 +1,7 @@
 package by.bsuir.restapp.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "clients")
 public class Client {
@@ -27,32 +29,17 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private Set<SoldCar> soldCars = new HashSet<>();
-
-    public Client(String firstName, String lastName, String email, String phone, Set<SoldCar> soldCars) {
+    public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.soldCars = soldCars;
     }
-
 
     public void updateData(Client updatedClient){
         this.firstName = updatedClient.getFirstName();
         this.lastName = updatedClient.getLastName();
         this.email = updatedClient.getEmail();
         this.phone = updatedClient.getPhone();
-    }
-
-    public void addSoldCar(SoldCar soldCar) {
-        soldCars.add(soldCar);
-        soldCar.setClient(this);
-    }
-
-    public void removeSoldCar(SoldCar soldCar) {
-        soldCars.remove(soldCar);
-        soldCar.setClient(null);
     }
 }

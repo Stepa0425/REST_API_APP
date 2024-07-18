@@ -2,6 +2,7 @@ package by.bsuir.restapp.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "sold_cars")
 public class SoldCar{
 
