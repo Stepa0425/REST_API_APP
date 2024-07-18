@@ -11,7 +11,7 @@ public interface SoldCarService {
 
     List<SoldCar> getAllSoldCars();
 
-    SoldCar updateSoldCar(Long soldCarId, SoldCar soldCar);
+    SoldCar updateSoldCar(Long soldCarId, SoldCar updatedSoldCar);
 
     void deleteSoldCar(Long soldCarId);
 }

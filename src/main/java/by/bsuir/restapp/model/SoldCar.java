@@ -34,4 +34,11 @@ public class SoldCar{
         this.price = price;
         this.client = client;
     }
+
+    public void updateData(SoldCar updatedSoldCar){
+        this.brand = updatedSoldCar.getBrand();
+        this.model = updatedSoldCar.getModel();
+        this.price = updatedSoldCar.getPrice();
+        this.client = updatedSoldCar.getClient();
+    }
 }
