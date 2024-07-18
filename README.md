@@ -4,6 +4,7 @@
 https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html
 - PostgreSQL. Можно скачать по ссылке:
 https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+Так же при установке у себя PostgeSQL необходимо создать пароль при установке wERREA49. Порт для PostgreSQL оставить по умолчанию. Далее создать базу данных car_dealership, владельца оставить по умолчанию. 
 
 Шаги для запуска у себя:
 1. Скачать zip папку кода себе на компьютер, распаковать, запомнить местоположение.
@@ -17,3 +18,5 @@ java -jar *path_to_jar_file*.jar
    при последующем использовании необходимо перейти в корневой каталог в src\main\resources\application.properties
 8. Поставить в последних 2-х строках в самом начале '#'. Повторить шаги 2-5.
 9. Для того, чтобы закончить работу приложения необходимо нажать Ctrl+C(в противном случае закрыть комнадную строку/PowerShell).
+
+
