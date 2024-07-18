@@ -16,9 +16,6 @@ public class SoldCarServiceImpl implements SoldCarService {
 
     @Override
     public SoldCar createSoldCar(SoldCar soldCar) {
-        if (soldCar.getClient() == null) {
-            throw new RuntimeException("The client should exists!");
-        }
         return soldCarRepository.save(soldCar);
     }
 
@@ -36,10 +33,12 @@ public class SoldCarServiceImpl implements SoldCarService {
 
     @Override
     public SoldCar updateSoldCar(Long soldCarId, SoldCar updatedSoldCar) {
-        SoldCar soldCar = soldCarRepository.findById(soldCarId)
+        return soldCarRepository.findById(soldCarId)
+                .map(soldCar -> {
+                    soldCar.updateData(updatedSoldCar);
+                    return soldCarRepository.save(soldCar);
+                })
                 .orElseThrow(() -> new ResourceNotFoundException("Sold car isn't exists with soldCarId:" + soldCarId));
-        soldCar.updateData(updatedSoldCar);
-        return soldCarRepository.save(soldCar);
     }
 
     @Override

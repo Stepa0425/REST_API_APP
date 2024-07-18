@@ -33,12 +33,13 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client updateClient(Long clientId, Client updatedClient) {
-        Client client = clientRepository.findById(clientId)
+        return clientRepository.findById(clientId)
+                .map(client -> {
+                    client.updateData(updatedClient);
+                    return clientRepository.save(client);
+                })
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Client isn't exists with id:" + clientId));
-        client.updateData(updatedClient);
-
-        return clientRepository.save(client);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<Client> createUser(@RequestBody Client client) {
+    public ResponseEntity<Client> createClient(@RequestBody Client client) {
         Client savedClient = clientService.createClient(client);
         return new ResponseEntity<>(savedClient, HttpStatus.CREATED);
     }

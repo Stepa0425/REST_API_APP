@@ -1,18 +1,19 @@
 package by.bsuir.restapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 
-@Getter
-@Setter
-@Entity
+@Data
 @NoArgsConstructor
+@Entity
 @Table(name = "sold_cars")
-public class SoldCar{
+public class SoldCar implements Serializable {
 
     @Id
     @Column(name = "id")
@@ -24,21 +25,30 @@ public class SoldCar{
     private String model;
     @Column(name = "price")
     private BigDecimal price;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "client_id", nullable = false)
+    @JsonIgnore
     private Client client;
 
-    public SoldCar(String brand, String model, BigDecimal price, Client client) {
-        this.brand = brand;
-        this.model = model;
-        this.price = price;
-        this.client = client;
-    }
-
-    public void updateData(SoldCar updatedSoldCar){
+    public void updateData(SoldCar updatedSoldCar) {
         this.brand = updatedSoldCar.getBrand();
         this.model = updatedSoldCar.getModel();
         this.price = updatedSoldCar.getPrice();
-        this.client = updatedSoldCar.getClient();
+    }
+    @Override
+    public boolean equals(Object o) {
+        if ( this == o ) {
+            return true;
+        }
+        if ( o == null || getClass() != o.getClass() ) {
+            return false;
+        }
+        SoldCar soldCar = (SoldCar) o;
+        return id == soldCar.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

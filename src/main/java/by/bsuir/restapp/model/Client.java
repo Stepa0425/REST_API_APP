@@ -1,18 +1,13 @@
 package by.bsuir.restapp.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
 @Table(name = "clients")
 public class Client {
@@ -29,6 +24,10 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<SoldCar> soldCars = new ArrayList<>();
+
+
     public Client(String firstName, String lastName, String email, String phone) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,5 +40,15 @@ public class Client {
         this.lastName = updatedClient.getLastName();
         this.email = updatedClient.getEmail();
         this.phone = updatedClient.getPhone();
+    }
+
+    public void addSoldCar(SoldCar soldCar) {
+        soldCars.add(soldCar);
+        soldCar.setClient(this);
+    }
+
+    public void removeSoldCar(SoldCar soldCar) {
+        soldCars.remove(soldCar);
+        soldCar.setClient(null);
     }
 }
