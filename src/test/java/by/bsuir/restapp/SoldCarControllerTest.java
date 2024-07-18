@@ -113,7 +113,6 @@ class SoldCarControllerTest {
         assertThat(response.getBody()).isEqualTo("Client with id:1 deleted successfully!");
         verify(clientService).getClientById(1L);
         verify(soldCarService).getSoldCarById(1L);
-       // verify(clientService).removeSoldCar(soldCar);
         verify(soldCarService).deleteSoldCar(1L);
     }
 }
