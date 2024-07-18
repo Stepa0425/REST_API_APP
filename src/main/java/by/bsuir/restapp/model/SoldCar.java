@@ -27,7 +27,7 @@ public class SoldCar extends CoreModel {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    public SoldCar(List<Error> errors, String brand, String model, BigDecimal price, Client client) {
+    public SoldCar(String brand, String model, BigDecimal price, Client client) {
         this.brand = brand;
         this.model = model;
         this.price = price;
