@@ -28,7 +28,6 @@ public class Client extends CoreModel {
     @Column(name = "phone")
     private String phone;
 
-
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<SoldCar> soldCars = new HashSet<>();
 
