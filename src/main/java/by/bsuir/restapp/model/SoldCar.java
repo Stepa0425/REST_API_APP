@@ -5,13 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "sold_cars")
-public class SoldCar extends CoreModel {
+public class SoldCar{
 
     @Id
     @Column(name = "id")
@@ -32,9 +31,5 @@ public class SoldCar extends CoreModel {
         this.model = model;
         this.price = price;
         this.client = client;
-    }
-
-    public SoldCar(List<Error> errors) {
-        super(errors);
     }
 }

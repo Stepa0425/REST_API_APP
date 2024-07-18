@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -14,7 +13,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Table(name = "clients")
-public class Client extends CoreModel {
+public class Client {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,16 +30,14 @@ public class Client extends CoreModel {
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private Set<SoldCar> soldCars = new HashSet<>();
 
-    public Client(String firstName, String lastName, String email, String phone) {
+    public Client(String firstName, String lastName, String email, String phone, Set<SoldCar> soldCars) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.soldCars = soldCars;
     }
 
-    public Client(List<Error> errors) {
-        super(errors);
-    }
 
     public void updateData(Client updatedClient){
         this.firstName = updatedClient.getFirstName();
