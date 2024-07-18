@@ -19,4 +19,48 @@ java -jar *path_to_jar_file*.jar
 8. Поставить в последних 2-х строках в самом начале '#'. Повторить шаги 2-5.
 9. Для того, чтобы закончить работу приложения необходимо нажать Ctrl+C(в противном случае закрыть комнадную строку/PowerShell).
 
+10. Коллекция Postman для полной проверки REST API.
+- POST localhost:8080/test/app/clients
+  Body:
+  {
+"firstName" : "Vasja",
+"lastName" : "Pupkin",
+"email" : "gfsfsfs@gmail.com",
+"phone" : "375294567891"
 
+- GET localhost:8080/test/app/clients
+- GET localhost:8080/test/app/clients/4
+
+-PUT localhost:8080/test/app/clients/24
+  Body:
+  {
+"firstName" : "James",
+"lastName" : "LeBrone",
+"email" : "jalebrone@ja.com",
+"phone" : "375298956231"
+}
+
+-DELETE localhost:8080/test/app/clients/2
+
+-GET localhost:8080/test/app/soldCars
+-GET localhost:8080/test/app/soldCars/15
+
+-DELETE localhost:8080/test/app/clients/9/soldCars/6
+
+-POST localhost:8080/test/app/clients/9/soldCars
+Body:
+{
+            "brand": "Volvo",
+            "model": "XC90",
+            "price": 27394.58
+}
+
+-PUT localhost:8080/test/app/soldCars/20
+Body:
+{
+    "brand": "Volvo",
+    "model": "XC90",
+    "price": 26000
+}
+
+       
